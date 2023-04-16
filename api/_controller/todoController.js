@@ -144,10 +144,20 @@ const todoController = {
     try {
       const query1 = `DELETE FROM ${TABLE.TODO};`;
       const [rows1] = await db.execute(query1);
-  
+
       const query2 = `ALTER TABLE ${TABLE.TODO} AUTO_INCREMENT = 1;`;
       const [rows2] = await db.execute(query2);
-  
+
+      const len = 10;
+      const insertQuery = `INSERT INTO ${TABLE.TODO} (mb_id, title, done) VALUES ?;`;
+
+      const data = [];
+      for (let i = 1; i <= len; i++) {
+        data.push([1, `Task ${i}`, 0]);
+      }
+
+      const [rows3] = await db.execute(insertQuery, [data]);
+
       return resData(
         STATUS.S200.result,
         STATUS.S200.resultDesc,
