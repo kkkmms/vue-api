@@ -51,7 +51,7 @@ const todoController = {
     if (isEmpty(title) || isEmpty(done)) {
       return resData(STATUS.E100.result, STATUS.E100.resultDesc, moment().format('LT'));
     }
-
+    
     try {
       const query = `INSERT INTO todo (title, done) VALUES (?,?)`;
       const values = [title, done];
@@ -141,23 +141,19 @@ const todoController = {
   },
 
   reset: async (req) => {
+    const { len } = req.params;
+
     try {
-      const query1 = `DELETE FROM ${TABLE.TODO};`;
-      const [rows1] = await db.execute(query1);
-
-      const query2 = `ALTER TABLE ${TABLE.TODO} AUTO_INCREMENT = 1;`;
-      const [rows2] = await db.execute(query2);
-
-      const len = 10;
-      const insertQuery = `INSERT INTO ${TABLE.TODO} (mb_id, title, done) VALUES ?;`;
-
-      const data = [];
-      for (let i = 1; i <= len; i++) {
-        data.push([1, `Task ${i}`, 0]);
+      const deleteQuery = `DELETE FROM ${TABLE.TODO};`;
+      await db.execute(deleteQuery);
+  
+      const insertQuery = `INSERT INTO todo (title) VALUES (?)`;
+      let i;
+      for (i = 1; i <= len; i++) {
+        values = [`Title ${i}`];
+        const [Rows] = await db.execute(insertQuery, values);
       }
-
-      const [rows3] = await db.execute(insertQuery, [data]);
-
+     
       return resData(
         STATUS.S200.result,
         STATUS.S200.resultDesc,
