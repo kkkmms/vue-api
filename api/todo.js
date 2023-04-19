@@ -1,11 +1,10 @@
 const router = require('express').Router();
 const todoController = require('./_controller/todoController');
 
-
 router.post("/", async (req, res) => {
     const result = await todoController.create(req);
     res.json(result);
-    });
+});
 
 
 router.get('/', async (req,res)=>{
@@ -24,7 +23,7 @@ router.delete('/:id', async (req,res)=>{
     res.json(result);
 })
 
-router.post('/reset', async (req,res)=>{
+router.post('/reset/:len', async (req,res)=>{
     const result = await todoController.reset(req);
     res.json(result);
 })

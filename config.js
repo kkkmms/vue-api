@@ -22,5 +22,16 @@ const development = {
         connectTimeout: 5000,
     },
 }
-
-module.exports = { production, development}
+const management = {
+    PORT :5000,
+    DB:{
+        host:"localhost",
+        user:'root',
+        database:'vue',
+        password:'root',
+        port:"3306",
+        connectionLimit:20,
+        connectTimeout: 5000,
+    },
+}
+module.exports = { production, development, management}

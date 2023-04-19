@@ -150,7 +150,7 @@ const todoController = {
       const insertQuery = `INSERT INTO todo (title) VALUES (?)`;
       let i;
       for (i = 1; i <= len; i++) {
-        values = [`Title ${i}`];
+        constvalues = [`Title ${i}`];
         const [Rows] = await db.execute(insertQuery, values);
       }
      
