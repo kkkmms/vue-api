@@ -57,7 +57,7 @@ const userController = {
       const values = [id, pw, email];
       const [rows] = await db.execute(query, values);
       if (rows.affectedRows == 1) {
-        return resData2(
+        return resData(
           STATUS.S1.result,
           STATUS.S1.resultDesc,
           moment().format('LT'),
@@ -139,7 +139,7 @@ const userController = {
   delete: async (req) => {
     const { id, pw } = req.body;
     if (isEmpty(id) || isEmpty(pw)) {
-      return resData(STATUS.E1.result, STATUS.E1.resultDesc, moment().format("LT"));
+      return resData(STATUS.E6.result, STATUS.E6.resultDesc, moment().format("LT"));
     }
 
     const user = await getUser(id);

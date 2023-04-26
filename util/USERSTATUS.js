@@ -10,7 +10,9 @@ const USERSTATUS = {
     E3 :{result : "로그인 실패", resultDesc:"아이디 혹은 비밀번호를 확인해주세요.",},  
     E4 :{result : "로그인 실패", resultDesc:"아이디 혹은 비밀번호를 입력해주세요.",},
     E5 :{result : "게시글 등록 실패", resultDesc:"등록할 글을 작성해주세요.",},
+    E6 :{result : "회원탈퇴 실패", resultDesc:"아이디, 비밀번호를 입력해주세요.",},
     E99 :{result : "DB오류", resultDesc:"DB 연동 실패"},
+    
   };
 
   module.exports = USERSTATUS;
